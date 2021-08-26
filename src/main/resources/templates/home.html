@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{template/fragment/head :: common_head}">
+</head>
+<body>
+
+<h1>메인화면</h1>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/posts/save" th:href="@{/posts/save}"class="btn btn-primary" role=" button">글 등록</a>
+        </div>
+    </div>
+    <br>
+    <!-- 목록 -->
+    <table class="table table-horizontal tale-bordered">
+        <thead class="thead-strong">
+        <tr>
+            <th>게시글 번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>최종 수정일</th>
+            <th>수정</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        <tr th:each="post: ${posts}">
+            <td th:text="${post.id}"></td>
+            <td >
+                <a th:href="@{/posts/update/} + ${post.id}" th:text="${post.title}"></a>
+            </td>
+            <td th:text="${post.author}"></td>
+            <td th:text="${post.modifiedDate}"></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<footer th:replace="~{template/fragment/footer :: copy}"></footer>
+<th:block th:replace="~{template/fragment/foot}"></th:block>
+</body>
+</html>
